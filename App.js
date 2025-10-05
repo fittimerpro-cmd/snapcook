@@ -8,10 +8,13 @@ import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 
 import * as tf from '@tensorflow/tfjs';
-import '@tensorflow/tfjs-react-native';
-import { decodeJpeg } from '@tensorflow/tfjs-react-native';
-import * as mobilenet from '@tensorflow-models/mobilenet';
-import * as base64js from 'base64-js';
+import { Platform } from 'react-native';
+
+if (Platform.OS !== 'web') {
+  require('@tensorflow/tfjs-react-native');
+} else {
+  require('@tensorflow/tfjs-backend-webgl');
+}
 
 /* ----------------------------------------------------------------------------
    Helpers
